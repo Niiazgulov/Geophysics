@@ -15,7 +15,7 @@ namespace Geophysics
         {
             DataTable dt = new DataTable();
             var tableSize = Convert.ToInt32(txtL.Text);
-            
+
             Random rand = new Random();
 
             for (int i = 1; i <= tableSize; i++)
@@ -42,9 +42,9 @@ namespace Geophysics
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
-              foreach (DataGridViewRow row in dataGridView1.Rows)
-                if (Convert.ToInt32(Convert.ToInt32(row.Cells[col.Index].Value)) == 1)
-                   dataGridView1.Rows[row.Index].Cells[col.Index].Style.BackColor = Color.LightGreen;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (Convert.ToInt32(Convert.ToInt32(row.Cells[col.Index].Value)) == 1)
+                        dataGridView1.Rows[row.Index].Cells[col.Index].Style.BackColor = Color.LightGreen;
         }
 
         private DataGridViewCell? findFirstNode()
@@ -56,7 +56,7 @@ namespace Geophysics
             DataGridViewCell? firstNodeCell = dataGridView1.Rows[rowindex].Cells[colIndex];
             if (startNode == 1)
                 return firstNodeCell;
-            
+
             firstNodeCell = null;
             while (startNode != 1)
             {
@@ -80,7 +80,7 @@ namespace Geophysics
                     else
                         break;
                 }
-            } 
+            }
 
             return firstNodeCell;
         }
@@ -133,7 +133,7 @@ namespace Geophysics
             {
                 var neighbourRight = dataGridView1.Rows[currentNode.RowIndex].Cells[currentNode.ColumnIndex + 1];
                 if (Convert.ToInt32(neighbourRight.Value) != 0)
-                   neighbours.Add(neighbourRight);
+                    neighbours.Add(neighbourRight);
             }
             if (currentNode.ColumnIndex - 1 >= 0)
             {
@@ -151,7 +151,7 @@ namespace Geophysics
             {
                 var neighbourUp = dataGridView1.Rows[currentNode.RowIndex - 1].Cells[currentNode.ColumnIndex];
                 if (Convert.ToInt32(neighbourUp.Value) != 0)
-                    neighbours.Add(neighbourUp); 
+                    neighbours.Add(neighbourUp);
             }
 
             return neighbours;
@@ -161,7 +161,7 @@ namespace Geophysics
         {
             stepCount = 1;
             if (txtL.Text == "")
-               MessageBox.Show("¬ведите число от 2 до 256!");
+                MessageBox.Show("¬ведите число от 2 до 256!");
             else
             {
                 var tableSize = Convert.ToInt32(txtL.Text);
@@ -184,6 +184,20 @@ namespace Geophysics
         private void txtL_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void btnResult_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                var firstNode = findFirstNode();
+                while (firstNode != null)
+                {
+                    stepCount++;
+                    DFSAlgorithm(stepCount);
+                    firstNode = findFirstNode();
+                }
+            }
         }
     }
 }

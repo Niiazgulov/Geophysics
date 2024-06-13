@@ -33,6 +33,7 @@
             txtL = new TextBox();
             labelL = new Label();
             btnNext = new Button();
+            btnResult = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             // 
             // btnNext
             // 
-            btnNext.Location = new Point(774, 577);
+            btnNext.Location = new Point(593, 577);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(199, 29);
             btnNext.TabIndex = 4;
@@ -85,11 +86,22 @@
             btnNext.UseVisualStyleBackColor = true;
             btnNext.Click += btnNext_Click;
             // 
+            // btnResult
+            // 
+            btnResult.Location = new Point(805, 577);
+            btnResult.Name = "btnResult";
+            btnResult.Size = new Size(168, 29);
+            btnResult.TabIndex = 5;
+            btnResult.Text = "Результат";
+            btnResult.UseVisualStyleBackColor = true;
+            btnResult.Click += btnResult_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(985, 615);
+            Controls.Add(btnResult);
             Controls.Add(btnNext);
             Controls.Add(labelL);
             Controls.Add(txtL);
@@ -109,5 +121,6 @@
         private TextBox txtL;
         private Label labelL;
         private Button btnNext;
+        private Button btnResult;
     }
 }
